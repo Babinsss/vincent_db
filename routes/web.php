@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
+
+// Route for showing the form to create a new user
+Route::get('/users', function () {
+    return view('user.index');
+});
 // Route for showing the form to create a new user
 Route::get('/create', function () {
     return view('user.create');

@@ -60,4 +60,9 @@ class UserController extends Controller
         // Redirect to store.blade.php and pass user data
         return view('store', ['user' => $user]);
     }
+    public function index()
+    {
+        $users = User::all(); // Fetch all users from the database
+        return view('users.index', compact('users')); // Pass the users data to the view
+    }
 }
