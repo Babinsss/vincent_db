@@ -9,7 +9,21 @@
 </head>
 
 <body>
-    @yield('content')
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-md-3">
+                <!-- Sidebar content goes here -->
+                Sidebar Content
+            </aside>
+
+            <!-- Main Content -->
+            <main class="col-md-9">
+                @yield('content')
+            </main>
+        </div>
+    </div>
+
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
