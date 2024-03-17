@@ -14,4 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome'); //welcome is the file in the views folder
+});
+
+Route::get('/users', function () {
+    return view('user.index');
+});
+
+Route::get('/users/add', function () {
+    return view('user.add');
+});
+
 Route::get('/genders', [GenderController::class, 'index']);
+Route::get('/gender/create', [GenderController::class, 'create']);
+Route::get('/gender/view/{id}', [GenderController::class, 'show']);
+Route::post('/gender/edit/{id}', [GenderController::class, 'edit']);
+
+
+Route::post('/gender/store', [GenderController::class, 'store']);
+Route::post('/gender/update/{gender}', [GenderController::class, 'update']);
