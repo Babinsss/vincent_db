@@ -17,15 +17,15 @@ class GenderController extends Controller
 
 
     public function index(){
-        $table_genders = Gender::all(); // SELECT * FROM table_genders;
-        return view('gender.index', compact('table_genders'));
-    }
+        $genders = Gender::all(); // SELECT * FROM table_genders;
+        return view('gender.index', compact('genders'));
+    }    
     
     public function show($id){
-        $gender = Gender::find($id); // SELECT * FROM table_genders WHERE gender_id = $id;
-        return view('gender.show', compact('gender'));
+        $gender = Gender::find($id); // Retrieve the gender record by ID
+        return view('gender.show', compact('gender')); // Pass the $gender variable to the view
     }
-
+    
     public function create(){
         return view('gender.create');
     }
@@ -56,8 +56,15 @@ class GenderController extends Controller
 
     }
 
-    public function delete(){
-        
+    public function delete($id)
+{
+    $gender = Gender::find($id);
+    if (!$gender) {
+        return redirect()->back()->with('error', 'Gender not found.');
     }
 
+    $gender->delete();
+
+    return redirect('/genders')->with('success', 'Gender deleted successfully.');
+}
 }

@@ -8,10 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
         <div class="content">
             @yield('content')
-        </div>
     </div>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>

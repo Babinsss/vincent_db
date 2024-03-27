@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* Custom CSS can be added here */
-        /* Adjust container width for larger screens */
-        @media (min-width: 2200px) {
-            .container {
-                max-width: 2200px;
-            }
-        }
-    </style>
-</head>
-
-<body>
+    @extends('layout.main')
+    @section('content')
+    <div class="wrapper">
+    @include('include.sidebar')
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card">
                     <div class="card-header bg-primary text-white">Add User</div>
                     <div class="card-body">
-                        <form method="POST" action="/user/store" enctype="multipart/form-data" id="userForm" class="needs-validation" novalidate>
+                        <form method="POST" action="/store" enctype="multipart/form-data" id="userForm" class="needs-validation" novalidate>
                             @csrf <!-- Automatically generates CSRF token input field -->
                             <div class="row">
                                 <!-- First Name Field -->
@@ -156,28 +139,4 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Client-side form validation
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
-</body>
-
-</html>
+    @endsection57

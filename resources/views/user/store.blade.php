@@ -23,7 +23,7 @@
                 <p class="card-text">Gender: {{ $user->gender }}</p>
                 <p class="card-text">Address: {{ $user->address }}</p>
                 <p class="card-text">Contact Number: {{ $user->contact_number }}</p>
-                <p class="card-text">Email: {{ $user->email }}</p>
+                <p class="card-text">Email: {{ $user->email_address }}</p>
                 <p class="card-text">Username: {{ $user->username }}</p>
                 <!-- You can display more user information here as needed -->
             </div>
