@@ -1,5 +1,9 @@
-<title>Add Gender</title>
 @extends('layout.main')
+
+@section('title')
+    Add Gender
+@endsection
+
 @section('content')
 <style>
     .container {
@@ -20,29 +24,10 @@
                 </div>
             </div>
             <div class="col-12">
-                <a href="/genders" class="btn btn-danger">Back to Users</a>
+                <a href="/genders" class="btn btn-danger">Back</a>
                 <button type="submit" class="btn btn-primary">Add Gender</button>
             </div>
         </form>
     </div>
 </div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict'
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
 @endsection
