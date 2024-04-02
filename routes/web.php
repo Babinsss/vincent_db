@@ -19,14 +19,19 @@ Route::get('/', function () {
     return view('welcome'); //welcome is the file in the views folder
 });
 
-Route::get('/genders', [GenderController::class, 'index']);
-Route::get('/gender/create', [GenderController::class, 'create']);
-Route::get('/gender/view/{id}', [GenderController::class, 'show']);
-Route::post('/gender/edit/{id}', [GenderController::class, 'edit']);
-Route::post('/gender/store', [GenderController::class, 'store']);
-Route::post('/gender/update/{gender}', [GenderController::class, 'update']);
-Route::delete('/genders/delete/{id}', [GenderController::class, 'delete'])->name('genders.delete');
-// Route::destroy('/gender/destroy/{gender}',[GenderController::class,'destroy']);
+Route::controller(GenderController::class)->group(function() {
+    Route::get('/genders', 'index');
+    Route::get('/gender/create', 'create');
+    Route::get('/gender/view/{id}', 'show');
+    Route::get('/gender/edit/{id}', 'edit');
+    Route::get('/gender/delete/{id}', 'delete');
+
+    Route::post('/gender/store', 'store');
+    Route::put('/gender/update/{gender}', 'update');
+    Route::delete('/gender/destroy/{gender}', 'destroy');
+});
+
+
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/create',[UserController::class,'create']);
 // Route::get('/store', [UserController::class,'store']);
