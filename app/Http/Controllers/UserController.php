@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -25,31 +26,41 @@ class UserController extends Controller
     //store
     public function create()
     {
-        return view('user.create');
+        $genders = Gender::all();
+        return view('user.create', compact('genders'));
     }
 
     public function store(Request $request)
     {
         // Validate the incoming request
         $validatedData = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'suffix' => ['nullable', 'string', 'max:255'],
+            'first_name' => ['required', 'max:255'],
+            'middle_name' => ['nullable', 'max:255'],
+            'last_name' => ['required', 'max:255'],
+            'suffix_name' => ['nullable', 'max:255'],
             'birth_date' => ['required', 'date'],
-            'gender_id' => ['required', 'string', 'in:Male,Female'],
-            'address' => ['required', 'string'],
-            'contact_number' => ['required', 'string'],
-            'email_address' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender_id' => ['required'],
+            'address' => ['required', 'max:255'],
+            'contact_number' => ['required'],
+            'email_address' => ['required', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed'],
+        ], [
+            'gender_id.required' => 'Please select a gender.',
         ]);
 
-        // Create a new user record
-        $user = User::create($validatedData);
+        
+        // Hash the password
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        
+        // return dd($validatedData);
+
+
+        // // Create a new user record
+        User::create($validatedData);
 
         // Redirect the user to the desired location
-        return redirect()->route('user.create')->with('success', 'User added successfully.');
+        return redirect('/user')->with('success', 'User added successfully.');
     }
 
 
