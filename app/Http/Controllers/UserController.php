@@ -76,5 +76,38 @@ class UserController extends Controller
     //update
     //delete
     //destroy
+    public function deleteUser(Request $request)
+    {
+        // Retrieve the user ID from the request
+        $userId = $request->input('user_id');
 
+        // Find the user by ID
+        $user = User::find($userId);
+
+        // Check if the user exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        // Delete the user
+        $user->delete();
+
+        // Redirect back with success message
+        return redirect()->route('/user')->with('success', 'User deleted successfully.');
+    }
+    public function showDeleteConfirmation($user_id)
+    {
+        // Find the user by ID
+        $user = User::find($user_id);
+
+        // Check if the user exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        // Return the delete confirmation view with the user data
+        return view('user.delete', ['user' => $user]);
+
+    }
 }
+

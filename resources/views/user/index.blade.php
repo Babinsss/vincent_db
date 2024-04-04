@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table">
-                        <a href="/create" class="btn btn-primary">Add User</a>
+                        <a href="/user/create" class="btn btn-primary">Add User</a>
                     </table>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -45,7 +45,7 @@
                                     <div class="btn-group" role="group">
                                         <a href="/user/view/{{$user->user_id}}" class="btn btn-primary">View</a>
                                         <a href="/user/edit/{{$user->user_id}}" class="btn btn-danger">Edit</a>
-                                        <a href="/user/delete/{{$user->user_id}}" class="btn btn-secondary">Delete</a>
+                                        <a href="{{ route('confirmDelete', ['user_id' => $user->user_id]) }}" class="btn btn-secondary">Delete</a>
                                     </div>
                                 </td>
                             </tr>
