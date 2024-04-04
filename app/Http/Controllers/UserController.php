@@ -93,7 +93,7 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect back with success message
-        return redirect()->route('/user')->with('success', 'User deleted successfully.');
+        return redirect('/user')->with('success', 'User deleted successfully.');
     }
     public function showDeleteConfirmation($user_id)
     {
