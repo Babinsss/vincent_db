@@ -35,8 +35,15 @@ Route::controller(GenderController::class)->group(function() {
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/create',[UserController::class,'create']);
 // Route::get('/store', [UserController::class,'store']);
-Route::post('/user/store',[UserController::class, 'store']);
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 // Define route for confirming user deletion
 Route::get('/user/delete/{user_id}', [UserController::class, 'showDeleteConfirmation'])->name('confirmDelete');
 // Define route for actually deleting the user
 Route::post('/user/delete', [UserController::class, 'deleteUser'])->name('deleteUser');
+//VIEW
+Route::get('/user/view/{user_id}', [UserController::class, 'view'])->name('viewUser');
+//Edit
+Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('editUser');
+//Update
+Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('updateUser');

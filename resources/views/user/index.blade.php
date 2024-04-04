@@ -8,13 +8,13 @@
     <div class='container mt-3'>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h5 class="card-title">List of Users</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -65,7 +65,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <a href="/user/create" class="btn btn-primary">Add User</a>
+                <a href="/user/create" class="btn btn-primary float-right">Add User</a>
             </div>
         </div>
     </div>

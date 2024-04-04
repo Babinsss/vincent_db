@@ -4,7 +4,7 @@
         font-family: 'Segoe UI', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background-color: #fafafa;
     }
 
     a {
@@ -22,23 +22,23 @@
     }
 
     #sidebar {
-        width: 280px;
-        background-color: #2c4b5f;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        background-color: #207bd7;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         transition: width 0.3s ease;
     }
 
     #sidebar:hover {
-        width: 320px;
+        width: 300px;
     }
 
     .sidebar-logo {
         padding: 1rem 0;
         font-size: 1.5rem;
         font-weight: 700;
-        color: #e4e4e4;
+        color: #ecf0f1;
         text-align: center;
-        border-bottom: 1px solid #446c7c;
+        border-bottom: 1px solid #eceef0;
     }
 
     .sidebar-nav {
@@ -52,13 +52,13 @@
     }
 
     .sidebar-item:hover {
-        background-color: #446c7c;
+        background-color: #edeef0;
     }
 
     .sidebar-link {
         display: block;
         padding: 12px;
-        color: #fff;
+        color: #080808;
         font-weight: 500;
     }
 
@@ -70,24 +70,30 @@
 <div class="wrapper">
     <aside id="sidebar">
         <div class="sidebar-logo">
-            <span class="system">CHARLES PUGE</span>
+            <span class="system">DEMO</span>
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/user/create" class="sidebar-link">
+                    <i class="fas fa-user"></i>
+                    <span>Add User</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="/user" class="sidebar-link">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-cog"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/genders" class="sidebar-link"> <!-- Updated href -->
-                    <i class="fas fa-venus-mars"></i>
+                <a href="/genders" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
                     <span>Genders</span>
                 </a>
             </li>
