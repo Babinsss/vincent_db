@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +48,6 @@ Route::get('/user/view/{user_id}', [UserController::class, 'view'])->name('viewU
 Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('editUser');
 //Update
 Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('updateUser');
+//Login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
