@@ -86,7 +86,7 @@
         }
         /* Background image for content section */
         .content-section {
-            background-image: url('images/Purisima.jpg'); /* Specify the path to your background image */
+            background-image: url('images/pcp.jpg'); /* Specify the path to your background image */
             background-size: cover;
             background-position: center;
             padding: 50px 0; /* Adjust padding as needed */
@@ -115,6 +115,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user">View Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log Out</a>
                     </li>
                     <!-- Add more navigation links as needed -->
                 </ul>
