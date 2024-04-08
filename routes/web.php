@@ -59,35 +59,35 @@ Route::get('/home', [UserController::class, 'home'])->name('home'); // Show home
 Route::get('/create', [UserController::class, 'create'])->name('create'); // Show create form for user
 Route::get('/index', [UserController::class, 'index'])->name('index'); // Show all users
 
-// //Routes For In Order To Stay only in login page 
-// Route::middleware(['auth'])->group(function () {
-//     // User routes
-//     Route::get('/user', [UserController::class, 'index']); // Show all users
-//     Route::get('/user/create',[UserController::class,'create']); // Show form to create a user
-//     Route::get('/users/search', [UserController::class, 'search'])->name('users.search'); //Search user
-//     Route::post('/user/store', [UserController::class, 'store'])->name('user.store'); // Store a new user
-//     Route::get('/user/delete/{user_id}', [UserController::class, 'showDeleteConfirmation'])->name('confirmDelete'); // Show delete confirmation for a user
-//     Route::post('/user/delete', [UserController::class, 'deleteUser'])->name('deleteUser'); // Delete a user
-//     Route::get('/user/view/{user_id}', [UserController::class, 'view'])->name('viewUser'); // View a specific user
-//     Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('editUser'); // Show form to edit a user
-//     Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('updateUser'); // Update a user
-// });
+//Routes For In Order To Stay only in login page 
+Route::middleware(['auth'])->group(function () {
+    // User routes
+    Route::get('/user', [UserController::class, 'index']); // Show all users
+    Route::get('/user/create',[UserController::class,'create']); // Show form to create a user
+    Route::get('/users/search', [UserController::class, 'search'])->name('users.search'); //Search user
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store'); // Store a new user
+    Route::get('/user/delete/{user_id}', [UserController::class, 'showDeleteConfirmation'])->name('confirmDelete'); // Show delete confirmation for a user
+    Route::post('/user/delete', [UserController::class, 'deleteUser'])->name('deleteUser'); // Delete a user
+    Route::get('/user/view/{user_id}', [UserController::class, 'view'])->name('viewUser'); // View a specific user
+    Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('editUser'); // Show form to edit a user
+    Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('updateUser'); // Update a user
+});
 
-// Route::middleware(['auth'])->group(function () {
-//     // Routes for GenderController
-//     Route::get('/genders', [GenderController::class, 'index']); // List all genders
-//     Route::get('/gender/create', [GenderController::class, 'create']); // Show form to create a gender
-//     Route::get('/gender/view/{id}', [GenderController::class, 'show']); // View a specific gender
-//     Route::get('/gender/edit/{id}', [GenderController::class, 'edit']); // Show form to edit a gender
-//     Route::get('/gender/delete/{id}', [GenderController::class, 'delete']); // Show delete confirmation for a gender
+Route::middleware(['auth'])->group(function () {
+    // Routes for GenderController
+    Route::get('/genders', [GenderController::class, 'index']); // List all genders
+    Route::get('/gender/create', [GenderController::class, 'create']); // Show form to create a gender
+    Route::get('/gender/view/{id}', [GenderController::class, 'show']); // View a specific gender
+    Route::get('/gender/edit/{id}', [GenderController::class, 'edit']); // Show form to edit a gender
+    Route::get('/gender/delete/{id}', [GenderController::class, 'delete']); // Show delete confirmation for a gender
 
-//     Route::post('/gender/store', [GenderController::class, 'store']); // Store a new gender
-//     Route::put('/gender/update/{gender}', [GenderController::class, 'update']); // Update a gender
-//     Route::delete('/gender/destroy/{gender}', [GenderController::class, 'destroy']); // Destroy a gender
-// });
+    Route::post('/gender/store', [GenderController::class, 'store']); // Store a new gender
+    Route::put('/gender/update/{gender}', [GenderController::class, 'update']); // Update a gender
+    Route::delete('/gender/destroy/{gender}', [GenderController::class, 'destroy']); // Destroy a gender
+});
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/home', [UserController::class, 'home'])->name('home'); // Show home page
-// });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [UserController::class, 'home'])->name('home'); // Show home page
+});
 
 

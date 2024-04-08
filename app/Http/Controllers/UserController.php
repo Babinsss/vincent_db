@@ -10,31 +10,30 @@ class UserController extends Controller
 {   
     // Index page showing all users
     public function index(Request $request)
-{
-    $search = $request->input('search');
-    $users = User::query()->with('gender'); // Eager load the gender relationship
+    {
+        $search = $request->input('search');
+        $users = User::query()->with('gender'); // Eager load the gender relationship
 
-    if ($search) {
-        $users->where(function ($query) use ($search) {
-            $query->where('first_name', 'LIKE', "%{$search}%")
-                  ->orWhere('last_name', 'LIKE', "%{$search}%")
-                  ->orWhere('email_address', 'LIKE', "%{$search}%");
-        })->orWhereHas('gender', function ($query) use ($search) {
-            if (strtolower($search) == 'male') {
-                $query->where('gender', 'Male');
-            } elseif (strtolower($search) == 'female') {
-                $query->where('gender', 'Female');
+        if ($search) {
+            $users->where(function ($query) use ($search) {
+                $query->where('first_name', 'LIKE', "%{$search}%")
+                    ->orWhere('last_name', 'LIKE', "%{$search}%")
+                    ->orWhere('email_address', 'LIKE', "%{$search}%");
+            });
+
+            if (strtolower($search) == 'male' || strtolower($search) == 'female') {
+                $users->orWhereHas('gender', function ($query) use ($search) {
+                    $query->where('gender', $search);
+                });
             }
-        });
+        }
+
+        $users = $users->paginate(10);
+        $users->appends(['search' => $search]); // Manually append the search query to pagination links
+
+        return view('user.index', compact('users', 'search'));
     }
 
-    $users = $users->paginate(10);
-    $users->appends(['search' => $search]); // Manually append the search query to pagination links
-
-    return view('user.index', compact('users', 'search'));
-}
-
-    
 
 
     // Show the form to create a new user

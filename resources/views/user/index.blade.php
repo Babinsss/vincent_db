@@ -32,7 +32,7 @@
                         <!-- Search form -->
                         <form action="{{ route('index') }}" method="GET" class="mb-3">
                             <div class="input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Search Users..." value="{{ $search }}">
+                                <input type="text" name="search" class="form-control" placeholder="Search Users" value="{{ $search }}">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-outline-primary">Search</button>
                                 </div>
