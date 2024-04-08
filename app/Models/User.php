@@ -28,5 +28,10 @@ class User extends Authenticatable
         'password'
     ];
     protected $hidden = ['password'];
+    
+    public function gender()
+{
+    return $this->belongsTo('App\Models\Gender', 'gender_id');
+}
 
 };

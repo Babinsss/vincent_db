@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Of Students</title>
+    <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
+</head>
+<body>
+    
+</body>
+</html>
 @extends('layout.main')
 
 @section('content')
@@ -5,14 +18,28 @@
 <div class="wrapper">
     @include('include.sidebar')
 
-    <div class='container mt-3'>
+    <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-                <div class="card shadow-lg">
+                <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title">List of Users</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">List of Users</h5>
+                            <a href="/create" class="btn btn-primary">Add User</a>
+                        </div>
                     </div>
                     <div class="card-body">
+                        <!-- Search form -->
+                        <form action="{{ route('index') }}" method="GET" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Search Users..." value="{{ $search }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-outline-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Table -->
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -37,7 +64,13 @@
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->suffix_name }}</td>
                                         <td>{{ $user->birth_date }}</td>
-                                        <td>{{ $user->gender_id }}</td>
+                                        <td>
+                                            @if ($user->gender)
+                                                {{ $user->gender->gender }}
+                                            @else
+                                                No Gender Assigned
+                                            @endif
+                                        </td>
                                         <td>{{ $user->email_address }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -59,13 +92,12 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Pagination links -->
+                        <div class="d-flex justify-content-center">
+                            {{ $users->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <a href="/user/create" class="btn btn-primary float-right">Add User</a>
             </div>
         </div>
     </div>
