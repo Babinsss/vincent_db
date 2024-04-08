@@ -6,11 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>List Of Students</title>
     <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom styles can be added here */
+    </style>
 </head>
 <body>
-    
+    @yield('content')
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 @extends('layout.main')
 
 @section('content')
@@ -20,7 +33,7 @@
 
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
                         <div class="d-flex justify-content-between align-items-center">
