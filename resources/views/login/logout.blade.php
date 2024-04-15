@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Logout</title>
     <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
-</body>
-</html>
+
 @extends('layout.main')
 
 @section('content')
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-10">
             <div class="card border-0 shadow rounded">
                 <div class="card-header bg-primary text-white">{{ __('Logout') }}</div>
 
@@ -40,3 +40,9 @@
 </div>
 
 @endsection
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

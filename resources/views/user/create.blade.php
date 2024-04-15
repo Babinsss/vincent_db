@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add Student</title>
     <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
-</body>
-</html>
+
 @extends('layout.main')
 
 @section('content')
@@ -26,8 +26,11 @@
                     <div class="card-body">
                         <form method="POST" action="/user/store" enctype="multipart/form-data" id="userForm"
                             class="needs-validation" novalidate>
+
+                            <!-- Form content -->
                             @csrf <!-- Automatically generates CSRF token input field -->
 
+                            <!-- First Name and Middle Name -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="first_name" class="form-label">First Name</label>
@@ -37,7 +40,6 @@
                                         Please provide a first name.
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="middle_name" class="form-label">Middle Name</label>
                                     <input id="middle_name" type="text" class="form-control" name="middle_name" required>
@@ -47,6 +49,7 @@
                                 </div>
                             </div>
 
+                            <!-- Last Name and Suffix -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="last_name" class="form-label">Last Name</label>
@@ -55,13 +58,13 @@
                                         Please provide a last name.
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="suffix_name" class="form-label">Suffix</label>
                                     <input id="suffix_name" type="text" class="form-control" name="suffix_name">
                                 </div>
                             </div>
 
+                            <!-- Birthdate and Gender -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="birth_date" class="form-label">Birthdate</label>
@@ -70,7 +73,6 @@
                                         Please provide a valid birthdate.
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="gender_id" class="form-label">Gender</label>
                                     <select id="gender_id" class="form-select" name="gender_id" required>
@@ -85,6 +87,7 @@
                                 </div>
                             </div>
 
+                            <!-- Address -->
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <textarea id="address" class="form-control" name="address" rows="3" required></textarea>
@@ -93,6 +96,7 @@
                                 </div>
                             </div>
 
+                            <!-- Contact Number -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="contact_number" class="form-label">Contact Number</label>
@@ -101,11 +105,10 @@
                                         Please provide a valid contact number.
                                     </div>
                                 </div>
-
                                 <!-- Add other form fields with similar structure -->
-
                             </div>
 
+                            <!-- Email and Username -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="email_address" class="form-label">Email</label>
@@ -114,7 +117,6 @@
                                         Please provide a valid email address.
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="username" class="form-label">Username</label>
                                     <input id="username" type="text" class="form-control" name="username" required>
@@ -124,6 +126,7 @@
                                 </div>
                             </div>
 
+                            <!-- Password and Confirm Password -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Password</label>
@@ -132,7 +135,6 @@
                                         Please provide a password.
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="password_confirmation" class="form-label">Confirm Password</label>
                                     <input id="password_confirmation" type="password" class="form-control"
@@ -154,3 +156,9 @@
     </div>
 </div>
 @endsection
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

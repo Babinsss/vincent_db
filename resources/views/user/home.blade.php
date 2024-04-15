@@ -96,7 +96,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-light" style="background-color: #ffffff54;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff54;">
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/home">
