@@ -5,8 +5,9 @@
 <div class="wrapper">
     @include('include.sidebar')
 
-    <div class="container mt-3">
-        <div class="card">
+    <div class='container'>
+
+        <div class="card mt-3">
             <div class="card-header">
                 <h5 class="card-title">Delete User</h5>
             </div>
@@ -28,3 +29,4 @@
 </div>
 
 @endsection
+
