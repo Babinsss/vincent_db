@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gender;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class UserController extends Controller
-{   
+{
     // Index page showing all users
     public function index(Request $request)
     {
@@ -47,7 +48,7 @@ class UserController extends Controller
             'first_name' => ['required', 'max:255'],
             'middle_name' => ['nullable', 'max:255'],
             'last_name' => ['required', 'max:255'],
-            'suffix_name' => ['max:255'], 
+            'suffix_name' => ['max:255'],
             'birth_date' => ['required', 'date'],
             'gender_id' => ['required', 'exists:genders,gender_id'], // Ensure gender_id exists in the 'genders' table
             'address' => ['required', 'max:255'],
@@ -64,7 +65,7 @@ class UserController extends Controller
         // Handle image upload
         if ($request->hasFile('user_image')) {
             $image = $request->file('user_image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
             $validatedData['user_image'] = 'images/' . $imageName;
         }
@@ -80,11 +81,11 @@ class UserController extends Controller
     public function view($user_id)
     {
         $user = User::find($user_id);
-    
+
         if (!$user) {
             return redirect()->route('userNotFound');
         }
-    
+
         return view('user.view', ['user' => $user]);
     }
 
@@ -96,51 +97,48 @@ class UserController extends Controller
     }
 
     // Update user details
-    public function update(Request $request, $user_id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($user_id);
-
-        $validatedData = $request->validate([
+        // return  ddd($request);
+        $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'max:255'],
             'middle_name' => ['nullable', 'max:255'],
             'last_name' => ['required', 'max:255'],
-            'suffix_name' => ['max:255'], 
-            'birth_date' => ['required', 'date'],
-            'gender_id' => ['required', 'exists:genders,gender_id'], // Ensure gender_id exists in the 'genders' table
-            'address' => ['required', 'max:255'],
-            'contact_number' => ['required'],
-            'email_address' => ['required', 'email', 'max:255', 'unique:users,email_address,'.$user_id],
-            'username' => ['required', 'max:255', 'unique:users,username,'.$user_id],
-            'password' => ['nullable', 'confirmed'],
-            'user_image' => ['nullable', 'image', 'max:20480'], // Max size: 10MB, mime types: jpg, jpeg, png, gif
-        ], [
-            'gender_id.required' => 'Please select a gender.',
-            'gender_id.exists' => 'Please select a valid gender.', // Error message for invalid gender_id
+            'suffix_name' => ['nullable', 'max:255'],
+            'gender_id' => ['required'],
+            'birth_date' => ['required'],
+            'email_address' => [
+                'required',
+                'email',
+            ],
+            'user_image' => [
+                'nullable', 'image', 'max:200000'
+            ]
         ]);
 
-        // Handle image upload
+        $validated = $validator->validate();
+
         if ($request->hasFile('user_image')) {
-            $image = $request->file('user_image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['user_image'] = 'images/' . $imageName;
+            $filenameWithExtension = $request->file('user_image');
+            $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            $extension = $request->file('user_image')->getClientOriginalExtension();
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            $request->file('user_image')->storeAs('public/img/user', $filenameToStore);
+            $validated['user_image'] = $filenameToStore;
         }
 
-        // Update user details
-        if (isset($validatedData['password'])) {
-            $validatedData['password'] = bcrypt($validatedData['password']);
-        }
+        // return ddd($validated);
 
-        $user->update($validatedData);
+        $user->update($validated);
 
-        return redirect()->route('viewUser', $user_id)->with('success', 'User updated successfully.');
+        return redirect('/user')->with('message_success', 'User updated successfully.');
     }
 
     // Show delete confirmation page
     public function showDeleteConfirmation($user_id)
     {
         $user = User::find($user_id);
-    
+
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
