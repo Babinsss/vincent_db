@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student Information</title>
-    <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
-</head>
-<body>
-    
-</body>
-</html>
 @extends('layout.main')
 
 @section('content')
@@ -29,9 +16,12 @@
                 <p class="card-text"><strong>Birthday:</strong> {{ $user->birth_date }}</p>
                 <p class="card-text"><strong>Gender:</strong> {{ $user->gender_id }}</p>
                 <p class="card-text"><strong>Email Address:</strong> {{ $user->email_address }}</p>
+                @if($user->user_image)
+                    <p class="card-text"><strong>User Image:</strong></p>
+                    <img src="{{ asset($user->user_image) }}" class="img-fluid" alt="User Image">
+                @endif
             </div>
         </div>
     </div>
 </div>
 @endsection
-

@@ -34,8 +34,6 @@ class UserController extends Controller
         return view('user.index', compact('users', 'search'));
     }
 
-
-
     // Show the form to create a new user
     public function create()
     {
@@ -57,10 +55,19 @@ class UserController extends Controller
             'email_address' => ['required', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed'],
+            'user_image' => ['nullable', 'image', 'max:20480'], // Max size: 10MB, mime types: jpg, jpeg, png, gif
         ], [
             'gender_id.required' => 'Please select a gender.',
             'gender_id.exists' => 'Please select a valid gender.', // Error message for invalid gender_id
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('user_image')) {
+            $image = $request->file('user_image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['user_image'] = 'images/' . $imageName;
+        }
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 
@@ -92,8 +99,41 @@ class UserController extends Controller
     public function update(Request $request, $user_id)
     {
         $user = User::find($user_id);
-        $user->update($request->all());
-        return redirect()->route('viewUser', $user_id);
+
+        $validatedData = $request->validate([
+            'first_name' => ['required', 'max:255'],
+            'middle_name' => ['nullable', 'max:255'],
+            'last_name' => ['required', 'max:255'],
+            'suffix_name' => ['max:255'], 
+            'birth_date' => ['required', 'date'],
+            'gender_id' => ['required', 'exists:genders,gender_id'], // Ensure gender_id exists in the 'genders' table
+            'address' => ['required', 'max:255'],
+            'contact_number' => ['required'],
+            'email_address' => ['required', 'email', 'max:255', 'unique:users,email_address,'.$user_id],
+            'username' => ['required', 'max:255', 'unique:users,username,'.$user_id],
+            'password' => ['nullable', 'confirmed'],
+            'user_image' => ['nullable', 'image', 'max:20480'], // Max size: 10MB, mime types: jpg, jpeg, png, gif
+        ], [
+            'gender_id.required' => 'Please select a gender.',
+            'gender_id.exists' => 'Please select a valid gender.', // Error message for invalid gender_id
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('user_image')) {
+            $image = $request->file('user_image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['user_image'] = 'images/' . $imageName;
+        }
+
+        // Update user details
+        if (isset($validatedData['password'])) {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
+
+        $user->update($validatedData);
+
+        return redirect()->route('viewUser', $user_id)->with('success', 'User updated successfully.');
     }
 
     // Show delete confirmation page

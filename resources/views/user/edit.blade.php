@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Information</title>
-    <link rel="icon" href="{{ asset('images/cpc.ico') }}" type="image/x-icon">
-</head>
-<body>
-    
-</body>
-</html>
 @extends('layout.main')
 
 @section('content')
@@ -24,9 +11,10 @@
                         <h5 class="card-title mb-0">Update User Information</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('updateUser', $user->user_id) }}" method="POST">
+                        <form action="{{ route('updateUser', $user->user_id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -41,6 +29,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -55,10 +44,12 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="birth_date">Birthday</label>
                                 <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ $user->birth_date }}">
                             </div>
+
                             <div class="form-group">
                                 <label for="gender_id">Gender</label>
                                 <select class="form-control" id="gender_id" name="gender_id">
@@ -66,10 +57,17 @@
                                     <option value="2" {{ $user->gender_id == 2 ? 'selected' : '' }}>Female</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="email_address">Email Address</label>
                                 <input type="email" class="form-control" id="email_address" name="email_address" value="{{ $user->email_address }}">
                             </div>
+
+                            <div class="form-group">
+                                <label for="user_image">User Image</label>
+                                <input type="file" class="form-control" id="user_image" name="user_image">
+                            </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 <a href="/user" class="btn btn-secondary">Cancel</a>
